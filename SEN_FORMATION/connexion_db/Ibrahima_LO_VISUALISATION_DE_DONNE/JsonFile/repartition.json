@@ -1,0 +1,10 @@
+[
+{"type":"header","version":"4.8.3","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"cours"},
+{"type":"table","name":"ETUDIANT","database":"cours","data":
+[
+{"Lbsexe":"Femme","COUNT":"5"},
+{"Lbsexe":"Homme","COUNT":"6"}
+]
+}
+]

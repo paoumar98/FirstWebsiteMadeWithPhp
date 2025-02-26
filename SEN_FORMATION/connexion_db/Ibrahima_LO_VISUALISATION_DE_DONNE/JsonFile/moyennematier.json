@@ -1,0 +1,13 @@
+[
+{"type":"header","version":"4.8.3","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"cours"},
+{"type":"table","name":"moyennematiere","database":"cours","data":
+[
+{"Nomat":"Géographie","MoyEtuMat":"9.25"},
+{"Nomat":"Histoire","MoyEtuMat":"10.85"},
+{"Nomat":"Informatique","MoyEtuMat":"12.4"},
+{"Nomat":"Mathématiques","MoyEtuMat":"9.944444444444445"},
+{"Nomat":"Sociologie","MoyEtuMat":"9.8125"}
+]
+}
+]

@@ -1,0 +1,122 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+  <script src="canvas/canvasjs.min.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.js"></script>
+ </head>
+    <body>    
+      <div class="container">
+    <div><h2>Visualisation de données (Charts) avec AJAX/JQUERY/BOOTSRAP/CanvasJS<h2><h6> ---DarDevWeb<h6></div>
+    <hr>
+      <div>
+          <script language="javascript" type="text/javascript"> 
+            $(document).ready(
+
+            function() { 
+            var resultatdb = [];
+            var Moyenne_Mat= [];
+            var repartition= [];
+            var perfomInfo= [];
+            var xhr=null;
+            var xhr1=null;
+            var xhr2=null;
+            var dataPoints = [];
+            var dataPoints1 = [];
+
+
+            //Variable chart1 qui contient les données du graph circulaire (le graph lui-même)
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+              animationEnabled: true,
+              title:{
+              text: "La répartition des femmes et des hommes parmi les étudiants"
+                },
+              legend:{
+                cursor: "pointer",
+              },
+              data: [{
+                type: "pie",
+                showInLegend: true,
+                toolTipContent: "{name}: <strong>{y}</strong>",
+                indexLabel: "{name} - {y}",
+                dataPoints:dataPoints1
+                  }]
+                });
+                chart1.render();
+
+            //Variable chart1 qui contient les données du graph circulaire (le graph lui-même)
+            var chart = new CanvasJS.Chart("chartContainer", {
+              animationEnabled: true,
+              theme: "light2",
+              title: {
+                  text: "La moyenne des notes obtenues par matière"
+              },
+              axisY: {
+              title: "Moyenne",
+              suffix: " /20",
+              titleFontSize: 20
+              },
+              axisX: {
+                labelFontSize: 20,
+                labelFontColor: "dimGrey",
+              titleFontSize: 20
+              },
+              data: [{
+               type: "column",
+               indexLabel: "{y}",
+                indexLabelFontColor: "#5A5757",
+              dataPoints: dataPoints,
+              }]
+              });
+
+            //Fonction qui ajoute les elements tirés du Json dans dataPoints
+             function addData(Moyenne_Mat) {
+             for (var i = 0; i < Moyenne_Mat.length; i++) {
+                  let Lab=Moyenne_Mat[i].Nomat;
+               dataPoints.push({
+                 label: Lab,
+                 y: parseFloat(Moyenne_Mat[i].MoyEtuMat)
+                });
+               chart.render();
+              }
+              }
+
+              //Fonction qui ajoute les elements tirés du Json dans dataPoints1
+              function addData1(repartition) {
+             for (var i = 0; i < repartition.length; i++) {
+               dataPoints1.push({
+                  name: repartition[i].Lbsexe,
+                 y: parseInt(repartition[i].COUNT)
+                });
+               chart1.render();
+              }
+              }
+
+            //Chargement 1erfichier JSON moyennematier 
+          xhr=$.getJSON("moyennematier.json");
+          xhr.done(function () {
+                    Moyenne_Mat=xhr.responseJSON[2].data;
+                              addData(Moyenne_Mat);
+          });
+            //Chargement 2emefichier JSON repartition
+          xhr1=$.getJSON("repartition.json");
+          xhr1.done(function () {
+                    repartition=xhr1.responseJSON[2].data;
+                                addData1(repartition);
+          }
+            );
+            
+            }
+              ) 
+
+          </script> 
+        <div class="row" id="chartContainer" style="height: 210px; width: 920px; margin: 0px auto;"></div>
+        <hr>
+        <div class="row">
+        <div class="col-lg-4" id="chartContainer1" style="height: 210px; width: 520px; margin:left;"></div>
+        <div class="col-lg-6" id="chartContainer2" style="height: 210px; width: 520px; margin:left;"></div>
+        </div>
+      </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+La representation ne peut s'effectuer que sur un serveur , alors :
+
+1. Deposez le dossier Ibrahima_LO_VISUALISATION_DE_DONNE dans votre www ou htdocs
+2. Apres avoir allumer votre serveur - Naviguer vers NomServeur/Ibrahima_LO_VISUALISATION_DE_DONNE 
+-------------------------------------------------------------
+@bramslo17
